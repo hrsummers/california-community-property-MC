@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Multiple Choice Question</title>
+  <title>Multiple Choice Question Example</title>
 </head>
 <body>
-  <h1>Multiple Choice Question</h1>
+  <h1>Multiple Choice Question 1</h1>
+
   <p>What is the capital of France?</p>
+
   <form>
-    <input type="radio" name="answer" value="A">A) Berlin<br>
-    <input type="radio" name="answer" value="B">B) London<br>
-    <input type="radio" name="answer" value="C">C) Paris<br>
-    <input type="radio" name="answer" value="D">D) Rome<br><br>
-    <input type="submit" value="Submit Answer">
-  </form> 
-  <p id="correct-answer" style="display: none;">The correct answer is C) Paris.</p>
+    <input type="radio" id="answer1" name="answer" value="1"><label for="answer1">A. London</label><br>
+    <input type="radio" id="answer2" name="answer" value="2"><label for="answer2">B. Berlin</label><br>
+    <input type="radio" id="answer3" name="answer" value="3"><label for="answer3">C. Paris</label><br>
+    <input type="radio" id="answer4" name="answer" value="4"><label for="answer4">D. Rome</label><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <p id="result">
+    <!-- The correct answer will be displayed here after the user submits their answer -->
+  </p>
+
   <script>
-    var form = document.querySelector("form");
-    form.addEventListener("submit", function(event) {
+    // Get a reference to the form and result elements
+    var form = document.querySelector('form');
+    var result = document.querySelector('#result');
+
+    // Add an event listener for when the form is submitted
+    form.addEventListener('submit', function(event) {
+      // Prevent the form from being submitted
       event.preventDefault();
-      var correctAnswer = document.getElementById("correct-answer");
-      correctAnswer.style.display = "block";
+
+      // Get the selected answer
+      var selected = document.querySelector('input[name="answer"]:checked');
+
+      // Check if an answer was selected
+      if (selected) {
+        // Get the value of the selected answer
+        var answer = selected.value;
+
+        // Check if the selected answer is correct
+        if (answer == 3) {
+          // If the selected answer is correct, show the result and set the text to "Correct"
+          result.style.display = 'block';
+          result.textContent = 'Correct';
+        } else {
+          // If the selected answer is incorrect, show the result and set the text to "Incorrect"
+          result.style.display = 'block';
+          result.textContent = 'Incorrect';
+        }
+      }
     });
   </script>
 </body>
